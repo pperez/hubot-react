@@ -33,7 +33,7 @@ var THROTTLE_EXPIRATION = process.env.HUBOT_REACT_THROTTLE_EXPIRATION ? parseInt
 var INIT_TIMEOUT = process.env.HUBOT_REACT_INIT_TIMEOUT ? parseInt(process.env.HUBOT_REACT_INIT_TIMEOUT) : 10000;
 
 // TEST CONSTS
-var RESPONSE_DELAY_PER_WORD = 600; // 600ms per word on average, inclusive of thought processes
+var RESPONSE_DELAY_PER_WORD = process.env.HUBOT_REACT_RESPONSE_DELAY_PER_WORD ? parseInt(process.env.HUBOT_REACT_RESPONSE_DELAY_PER_WORD) : 600; // 600ms per word on average, inclusive of thought processes
 
 var lastUsedResponse = null;
 
