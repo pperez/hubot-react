@@ -29,17 +29,16 @@ var msgpack = require('msgpack');
 
 var ngrams = natural.NGrams.ngrams;
 var stemmer = natural.PorterStemmer; // Set the PorterStemmer to english
-var lang = process.env.HUBOT_REACT_STEMMER_LANG;
+var lang = if process.env.HUBOT_REACT_STEMMER_LANG then process.env.HUBOT_REACT_STEMMER_LANG else 'english';
 
-if lang
-    if _.isEqual(lang, 'spanish')
-        stemmer = natural.PorterStemmerEs; // Set the PorterStemmer to spanish
-        console.log('Setting the stemmer to spanish')
-    else if _.isEqual(lang, 'russian')
-        console.log('Setting the stemmer to english')
-        stemmer = natural.PorterStemmerRu; // Set the PorterStemmer to russian
-    else
-        console.log('Unsupported language or english, the stemmer has been set to english')
+if _.isEqual(lang, 'spanish')
+    stemmer = natural.PorterStemmerEs; // Set the PorterStemmer to spanish
+    console.log('Setting the stemmer to spanish')
+else if _.isEqual(lang, 'russian')
+    console.log('Setting the stemmer to english')
+    stemmer = natural.PorterStemmerRu; // Set the PorterStemmer to russian
+else
+    console.log('Unsupported language or english, the stemmer has been set to english')
 
 
 var STORE_SIZE = process.env.HUBOT_REACT_STORE_SIZE ? parseInt(process.env.HUBOT_REACT_STORE_SIZE) : 200;
