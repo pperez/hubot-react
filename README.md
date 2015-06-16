@@ -40,6 +40,22 @@ Wait for N milliseconds for hubot to initialize and load brain data from redis. 
 HUBOT_REACT_INIT_TIMEOUT=N
 ```
 
+### Stemmer language
+
+Sets the language of the Stemmer to `lang`. Natural's PorterStemmer is available in russian, english and spanish. (default english, avaible: english, spanish, russian)
+
+```
+HUBOT_REACT_STEMMER_LANG=lang
+``` 
+
+### Response delay per word
+
+Wait for N milliseconds between hubot responses. (default 600)
+
+```
+HUBOT_REACT_RESPONSE_DELAY_PER_WORD=N
+```
+
 ### Commands
 
 #### React (single-word term)

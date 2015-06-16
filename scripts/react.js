@@ -12,6 +12,7 @@
 //   HUBOT_REACT_THROTTLE_EXPIRATION=N - Throttle responses to the same terms for N seconds (default 300).
 //   HUBOT_REACT_INIT_TIMEOUT=N - wait for N milliseconds for brain data to load from redis. (default 10000)
 //   HUBOT_REACT_RESPONSE_DELAY_PER_WORD=N - wait for N milliseconds to reply
+//   HUBOT_REACT_STEMMER_LANG=lang - Sets the Stemmer to lang (default english)
 //
 // Commands:
 //   hubot react <term> <response> - tell hubot to react with <response> when it hears <term> (single word)
@@ -26,8 +27,16 @@ var natural = require('natural');
 var moment = require('moment');
 var msgpack = require('msgpack');
 
-var stemmer = natural.PorterStemmer;
 var ngrams = natural.NGrams.ngrams;
+var stemmer = natural.PorterStemmer; // Set the PorterStemmer to english
+var lang = process.env.HUBOT_REACT_STEMMER_LANG;
+
+if lang
+    if _.isEqual(lang, 'spanish')
+        stemmer = natural.PorterStemmerEs; // Set the PorterStemmer to spanish
+    else if _.isEqual(lang, 'russian')
+        stemmer = natural.PorterStemmerRu; // Set the PorterStemmer to russian
+
 
 var STORE_SIZE = process.env.HUBOT_REACT_STORE_SIZE ? parseInt(process.env.HUBOT_REACT_STORE_SIZE) : 200;
 var THROTTLE_EXPIRATION = process.env.HUBOT_REACT_THROTTLE_EXPIRATION ? parseInt(process.env.HUBOT_REACT_THROTTLE_EXPIRATION) : 300;
