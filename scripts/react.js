@@ -36,7 +36,7 @@ if (_.isEqual(lang, 'spanish')) {
     console.log('Setting the stemmer to spanish');
 }
 else if (_.isEqual(lang, 'russian')) {
-    console.log('Setting the stemmer to english');
+    console.log('Setting the stemmer to russian');
     stemmer = natural.PorterStemmerRu; // Set the PorterStemmer to russian
 }
 else {
